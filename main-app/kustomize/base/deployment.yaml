@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    spec:
+      containers:
+      - name: main-app
+        image: service/main-app
+        ports:
+          - containerPort: 4000
+        env:
+          - name: APP_PORT
+            value: "4000"
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: main-app-secret
+                key: db_host

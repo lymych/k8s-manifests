@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: service/main-app
+  newName: 503847863114.dkr.ecr.us-east-1.amazonaws.com/service/backend-api-dev
+  newTag: b35dd7
+namespace: app-dev
+resources:
+- ../../base
+patchesStrategicMerge:
+- conf-ingressroute.yaml
+- conf-dns-endpoint.yaml

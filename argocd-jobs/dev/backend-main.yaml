@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend-main
+  namespace: default
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:lymych/k8s-manifests.git
+    targetRevision: HEAD
+    path: main-app/kustomize/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated: {}

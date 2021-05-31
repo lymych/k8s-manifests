@@ -1,0 +1,10 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: dns-record
+spec:
+  endpoints:
+  - dnsName: main-app
+    recordType: CNAME
+    targets:
+    - traefik-ext.dev-app.tk
